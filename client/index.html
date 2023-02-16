@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="theme-color" content="#011b33">
+    <meta name="google-signin-client_id" content="`${GOOGLE_CLIENT_ID}.apps.googleusercontent.com`">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <title>Books Are Us</title>
+    <style media="screen">
+      #still-loading {
+        padding-top: 30vh;
+        text-align: center;
+        font-size: 70px;
+        font-weight: bold;
+        -webkit-animation: beat 1s ease-in-out infinite;
+        -moz-animation: beat 1s ease-in-out infinite;
+        animation: beat 1s ease-in-out infinite;
+        animation-direction: alternate;
+      }
+      @-webkit-keyframes beat {
+        0% {color: #ffffff;}
+        100% {color: #011b33;}
+      }
+      @keyframes beat {
+        0% {color: #ffffff;}
+        100% {color: #011b33;}
+      }
+
+      .show-offline-notification {
+        margin: 0;
+        text-align: center;
+        bottom: 4rem;
+        padding: 10px;
+        border-radius: 4px;
+        display: none;
+        color: #ffffff;
+        background: #B71C1C;
+        display: block;
+        position: fixed;
+        left:5px;
+        z-index: 1000;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root">
+        <div id="still-loading">
+          <p>Books Are Us</p>
+        </div>
+        <noscript>
+          <h5 class="center" style="font-weight: bold;">
+              You need to enable JavaScript to run this app.
+          </h5>
+        </noscript>
+    </div>
+    <div id="offline-notification" style="display: none;">
+      <h5 class="bold-text">You are offline</h5>
+    </div>
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
+    <script>
+      function offLineNotification (event) {
+        const offlineDiv = document.getElementById('offline-notification');
+        offlineDiv.style.display = "block";
+        offlineDiv.classList.add('show-offline-notification');
+      }
+      function removeOffLineNotification(event) {
+        const offlineDiv = document.getElementById('offline-notification');
+        offlineDiv.classList.remove('show-offline-notification');
+        offlineDiv.style.display = "none";
+        }
+      window.addEventListener('offline', offLineNotification);
+      window.addEventListener('online', removeOffLineNotification);
+    </script>
+    <script>
+      (function init() {
+        if ('serviceWorker' in navigator) {
+          window.addEventListener('load', () => {
+            navigator.serviceWorker.register('/sw.js').then(registration => {
+            }).catch(registrationError => {});
+          });
+        }
+      })();
+    </script>
+  </body>
+</html>

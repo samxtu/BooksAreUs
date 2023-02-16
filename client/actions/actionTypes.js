@@ -1,0 +1,56 @@
+import keyMirror from './keyMirror';
+/**
+ * array of action types
+ *
+ * @type {Array}
+ */
+const actionList = [
+  'AUTH_LOADING',
+  'SIGN_UP',
+  'LOGIN',
+  'LOGOUT',
+  'SET_LOGIN_STATUS',
+  'UPDATE_PROFILE',
+  'FETCHING_BORROWED_BOOKS',
+  'GET_BOOK',
+  'GET_BOOKS',
+  'GET_MORE_BOOKS',
+  'GET_BORROWED_BOOKS',
+  'GET_ALL_BORROWED',
+  'ADD_BOOK_CATEGORY',
+  'ADD_BOOK_CATEGORY_FAILURE',
+  'GET_BOOK_CATEGORIES',
+  'GET_BOOK_SUGGESTIONS',
+  'BORROW_BOOK',
+  'RETURN_BOOK',
+  'CREATE_BOOK',
+  'READ_BOOK',
+  'SET_BOOK_TO_READ',
+  'SET_BOOK_QUANTITY_TO_ZERO',
+  'EDIT_BOOK_INFO',
+  'DELETE_BOOK',
+  'FETCHING_MORE_BOOKS',
+  'UPLOAD_BOOK_FILE',
+  'UPLOAD_BOOK_COVER',
+  'SAVE_STATE',
+  'GET_SAVED_STATE',
+  'GET_ADMIN_NOTIFICATIONS',
+  'GET_MORE_ADMIN_NOTIFICATIONS',
+  'SET_LIBRARY_PAGINATION',
+  'SET_NOTICATIONS_PAGINATION',
+  'IS_FETCHING_NOTIFICATIONS',
+  'SET_TRANSACTIONS_PAGINATION',
+  'FETCHING_TRANSACTIONS',
+  'FETCHING_HISTORY',
+  'GET_TRANSACTION_HISTORY',
+  'GET_MORE_TRANSACTIONS'
+];
+
+/**
+ * action types object
+ *
+ * @type {Object}
+ */
+const actionTypes = keyMirror(actionList);
+
+export default actionTypes;
