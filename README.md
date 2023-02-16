@@ -39,7 +39,9 @@ npm run migrate:dev -->
 npm run start:client
 npm run start:dev -->
 
-navigate to http://localhost:8080 in your browser
+<!-- # Dockerized app not tested for now just npm install and run start:server and start:client on different console tabs, untill I work on testing the dockerized app -->
+
+navigate to http://localhost:8081 in your browser
 
 - For production build, run:
 npm run build
