@@ -3,6 +3,7 @@ import logger from 'morgan';
 import bodyParser from 'body-parser';
 import path from 'path';
 import expressStaticGzip from 'express-static-gzip';
+import cors from 'cors';
 import routes from './routes';
 
 // Set up the express app
@@ -11,8 +12,12 @@ const app = express();
 // Log requests to the console.
 app.use(logger('dev'));
 
+//help with cors
+app.use(cors());
+
 // Parse incoming request data
 app.use(bodyParser.json());
+
 app.use(bodyParser.urlencoded({ extended: false }));
 
 if (
@@ -47,10 +52,13 @@ app.use('/',
 
 app.use('/api/v1', routes);
 
-
 app.get('/*', (req, res) => res.sendFile(
   path.join(path.dirname(__dirname), 'client/index.html'))
 );
+
+
+app.use("/.netlify/server/bin/www", routes); // path must route to lambda
+
 
 /*
 eslint-disable
@@ -61,6 +69,5 @@ app.use((err, req, res, next) => {
     message: 'Something went wrong. Internal server error'
   })
 });
-
 
 export default app;
